@@ -8,6 +8,8 @@
 
 ### Important files
 
+- `README.md` — GitHub 项目入口，沿用 miniReact 的简洁结构：项目简介、在线体验、快速开始、构建与验证；标题使用 GitHub 仓库名，只保留必要接入配置，不混入本机目录编号、迁移记录或提交历史说明。
+
 - `package.json` — 项目脚本和依赖入口；`build` 会先运行 `vue-tsc -b` 再执行 Vite 构建。
 - `index.html` — Vue 挂载壳、浏览器标题及 favicon / Apple 主屏幕图标引用入口；图标资源细则见 `public/AGENTS.md`。
 - `pnpm-lock.yaml` — 当前依赖锁文件；调整依赖时保持锁文件同步。
