@@ -32,4 +32,4 @@
 - Git 状态和提交以本目录独立仓库为准。
 - Windows 下重命名项目目录时，同时修正本地 pnpm 安装元数据、依赖 junction 和生成启动器中的绝对路径；它们属于安装产物，不作为源码维护。
 
-- GitHub 远程为 `neo-jack/page2d`，私有仓库、master 主分支；主分支以独立项目初始提交重建，旧历史保存在本机归档。上传默认仅 CI，部署需仓库变量 DEPLOY_ENABLED=true。
+- GitHub 远程为 `neo-jack/page2d`，公开仓库、master 主分支；主分支以独立项目初始提交重建，旧历史保存在本机归档。上传默认仅 CI，部署需仓库变量 DEPLOY_ENABLED=true。
