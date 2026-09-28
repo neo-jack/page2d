@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="orbit" x1="8" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="aqua" x1="46" y1="10" x2="18" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="32" cy="32" rx="15" ry="25" transform="rotate(-40 32 32)" fill="none" stroke="url(#orbit)" stroke-width="7"/>
+  <ellipse cx="32" cy="32" rx="15" ry="25" transform="rotate(40 32 32)" fill="none" stroke="url(#aqua)" stroke-width="7"/>
+</svg>
