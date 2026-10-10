@@ -61,7 +61,7 @@ export default {
   },
   // 导航分类
   navCategory: {
-    AI工具箱: "AI Tools",
+    AI: "AI",
     网站: "Website",
     SKILL: "SKILL",
     源码: "Source",

@@ -4,9 +4,9 @@ const skillsSourceUrl = "https://github.com/neo-jack/all-project/tree/master/.co
 const skillUrl = (name: string) => `${skillsSourceUrl}/${name}`;
 
 // 导航分类
-export type NavCategory = "AI工具箱" | "源码" | "SKILL" | "其他";
+export type NavCategory = "AI" | "源码" | "SKILL" | "其他";
 
-export const NAV_CATEGORIES: NavCategory[] = ["AI工具箱", "源码", "SKILL", "其他"];
+export const NAV_CATEGORIES: NavCategory[] = ["AI", "源码", "SKILL", "其他"];
 
 // 导航图标配置
 export interface NavIcon {
@@ -75,6 +75,29 @@ export const navItems: NavItem[] = [
     category: "源码",
   },
   {
+    id: 11,
+    name: "AI 竞品分析工作台",
+    nameEn: "AI Competitive Analysis Workbench",
+    icons: [
+      {
+        icon: `${import.meta.env.BASE_URL}icon/github.svg`,
+        url: "https://github.com/neo-jack/ai-app-studio",
+        title: "GitHub",
+        requireOuterNet: true,
+      },
+    ],
+    localUrl: "http://localhost:3412/",
+    prodUrl: "/Ai/",
+    color: "#c9794a",
+    description: "面向 AI 竞品研究的调研工作台，支持范围确认、资料采集、协作编排与结构化报告",
+    descriptionEn: "An AI competitive research workbench for scope confirmation, evidence collection, orchestration, and structured reports",
+    techStack: ["React", "FastAPI", "SQLite"],
+    techStackEn: ["React", "FastAPI", "SQLite"],
+    highlights: ["范围确认", "证据采集", "协作编排", "结构化报告"],
+    highlightsEn: ["Scope Review", "Evidence Collection", "Orchestration", "Structured Reports"],
+    category: "AI",
+  },
+  {
     id: 8,
     name: "界面元素选择器",
     nameEn: "UI Element Selector",
@@ -95,7 +118,7 @@ export const navItems: NavItem[] = [
     techStackEn: ["JavaScript", "Bookmarklet"],
     highlights: ["元素选择", "源码定位", "AI 上下文"],
     highlightsEn: ["Element Selection", "Source Lookup", "AI Context"],
-    category: "AI工具箱",
+    category: "AI",
   },
   {
     id: 9,

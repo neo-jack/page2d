@@ -23,6 +23,7 @@
 ### Implementation notes
 
 - 面向用户的展示文案优先进入 `src/i18n/`，导航、菜单、个人信息等数据优先进入 `src/config/`。
+- `src/config/nav.ts` 的 `AI` 分类首项收录 `109my-aiproject`；其开发入口为 `http://localhost:3412/`，生产入口为站点同源 `/Ai/`，两者不要混用。
 - 浏览器标题在 `index.html` 中维护，使用 `LBQ©2D©2025`；2025 是固定展示年份，不随当前日期自动变化。标签页图标采用透明底蓝青双色交叠圆环，在本项目 `public/` 中独立维护；Apple 主屏幕图标保留透明底蓝色 L。
 - 主题、语言等跨组件状态放在 `src/store/`；单组件临时状态留在组件内部。
 - 本地 `.env` 不跟踪、不进入 Docker；仓库与镜像只使用空白 `.env.example`，构建使用 Node.js 24 + pnpm 10 frozen-lockfile。
