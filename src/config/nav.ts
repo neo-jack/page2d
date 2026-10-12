@@ -14,7 +14,6 @@ export interface NavIcon {
   icon: string;
   url: string;
   title: string;
-  requireOuterNet?: boolean;
 }
 
 export interface NavSubPage {
@@ -55,13 +54,11 @@ export const navItems: NavItem[] = [
         icon: `${import.meta.env.BASE_URL}icon/github.svg`,
         url: "https://github.com/neo-jack/102my-react",
         title: "GitHub",
-        requireOuterNet: true,
       },
       {
         icon: `${import.meta.env.BASE_URL}icon/figma.svg`,
         url: "https://www.figma.com/design/66yZgdnDIB3orW1hM58aku/102%E6%BA%90%E7%A0%81?node-id=0-1&p=f",
         title: "Figma",
-        requireOuterNet: true,
       },
     ],
     localUrl:
@@ -93,7 +90,6 @@ export const navItems: NavItem[] = [
         icon: `${import.meta.env.BASE_URL}icon/github.svg`,
         url: "https://github.com/neo-jack/ai-app-studio",
         title: "GitHub",
-        requireOuterNet: true,
       },
     ],
     localUrl: "http://localhost:3412/",
@@ -121,18 +117,17 @@ export const navItems: NavItem[] = [
         icon: `${import.meta.env.BASE_URL}icon/github.svg`,
         url: "https://github.com/neo-jack/101my-agent",
         title: "GitHub",
-        requireOuterNet: true,
       },
     ],
     localUrl: "http://127.0.0.1:5177/",
     prodUrl: "/AItool/",
     color: "#22c55e",
-    description: "选择网页元素，提取截图、样式与组件上下文，定位源码并交给 Codex",
-    descriptionEn: "Select web elements, capture screenshots, styles and component context, locate source code, and hand it to Codex",
+    description: "选择网页 DOM 元素，一键定位源码、转为 Figma 元素，复制网页信息",
+    descriptionEn: "Select webpage DOM elements, locate source code in one click, convert elements to Figma, and copy webpage information",
     techStack: ["JavaScript", "Bookmarklet"],
     techStackEn: ["JavaScript", "Bookmarklet"],
-    highlights: ["元素选择", "源码定位", "AI 上下文"],
-    highlightsEn: ["Element Selection", "Source Lookup", "AI Context"],
+    highlights: ["DOM 选择", "源码定位", "转为 Figma", "信息复制"],
+    highlightsEn: ["DOM Selection", "Source Lookup", "Figma Conversion", "Copy Information"],
     category: "提效",
   },
   {
@@ -144,7 +139,6 @@ export const navItems: NavItem[] = [
         icon: `${import.meta.env.BASE_URL}icon/github.svg`,
         url: skillUrl("desginer"),
         title: "GitHub",
-        requireOuterNet: true,
       },
     ],
     localUrl: `${import.meta.env.BASE_URL}#/design-workflow`,
@@ -169,7 +163,6 @@ export const navItems: NavItem[] = [
         icon: `${import.meta.env.BASE_URL}icon/github.svg`,
         url: "https://github.com/neo-jack",
         title: "GitHub",
-        requireOuterNet: true,
       },
     ],
     localUrl: "http://localhost:5173",
@@ -193,7 +186,6 @@ export const navItems: NavItem[] = [
         icon: `${import.meta.env.BASE_URL}icon/github.svg`,
         url: "https://github.com/neo-jack/page3d",
         title: "GitHub",
-        requireOuterNet: true,
       },
     ],
     localUrl: "https://www.lanbinquan.top/3D/",

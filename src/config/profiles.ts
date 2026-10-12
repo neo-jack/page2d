@@ -6,7 +6,6 @@ export interface SocialLink {
   url: string;
   title: string;
   color?: string;
-  requireOuterNet?: boolean;
 }
 
 export interface ProfileConfig {
@@ -23,7 +22,6 @@ export const profile: ProfileConfig = {
       icon: "Github",
       url: "https://github.com/neo-jack",
       title: "GitHub",
-      requireOuterNet: true,
     },
     {
       icon: `${import.meta.env.BASE_URL}icon/leetcode.png`,

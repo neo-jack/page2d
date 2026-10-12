@@ -14,24 +14,25 @@
     </button>
 
     <div v-if="open" class="menu glass-card" @click.stop>
-      <span
+      <a
         v-for="item in menuItems"
         :key="item.href"
         class="menu-item link"
-        @click="handleMenuClick(item)"
+        :href="item.href"
+        target="_blank"
+        rel="noopener noreferrer"
+        @click="close"
       >
         {{ getLabel(item) }}
-      </span>
+      </a>
     </div>
   </div>
-  <NetCheck ref="netCheckRef" />
 </template>
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { menuItems } from "../../config/menu";
 import type { MenuItem } from "../../config/menu";
 import { useLocaleStore } from "../../store/locale";
-import NetCheck from "../NetCheck/NetCheck.vue";
 
 const localeStore = useLocaleStore();
 
@@ -41,13 +42,6 @@ const getLabel = (item: MenuItem) =>
 
 const open = ref(false);
 const rootRef = ref<HTMLElement | null>(null);
-const netCheckRef = ref<InstanceType<typeof NetCheck> | null>(null);
-
-const handleMenuClick = (item: MenuItem) => {
-  netCheckRef.value?.checkAndOpen({ url: item.href, requireOuterNet: item.requireOuterNet });
-  close();
-};
-
 const toggle = () => {
   open.value = !open.value;
 };

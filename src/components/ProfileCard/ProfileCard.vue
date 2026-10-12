@@ -15,12 +15,14 @@
 
       <!-- 社交链接 -->
       <div class="social-links">
-        <span
+        <a
           v-for="link in profile.socialLinks"
           :key="link.url"
           class="social-link"
           :title="link.title"
-          @click="handleLinkClick(link)"
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             v-if="isImageIcon(link.icon)"
@@ -35,12 +37,11 @@
             size="24"
             :fill="link.color || iconColor"
           />
-        </span>
+        </a>
         <span class="author-name">@蓝斌铨</span>
       </div>
     </div>
   </div>
-  <NetCheck ref="netCheckRef" />
 </template>
 
 <script setup lang="ts">
@@ -48,9 +49,8 @@ import * as IconPark from "@icon-park/vue-next";
 import { useLocaleStore } from "../../store/locale";
 import { useThemeStore } from "../../store/theme";
 import { zh, en } from "../../i18n";
-import { computed, ref, type Component } from "vue";
+import { computed, type Component } from "vue";
 import { profile } from "../../config/profiles";
-import NetCheck from "../NetCheck/NetCheck.vue";
 
 const localeStore = useLocaleStore();
 const themeStore = useThemeStore();
@@ -65,12 +65,6 @@ const isImageIcon = (icon: string): boolean => icon.charAt(0) === "/";
 // 根据图标名称获取 icon-park 组件
 const getIcon = (name: string): Component | undefined => {
   return (IconPark as Record<string, Component>)[name];
-};
-// 网络检测
-const netCheckRef = ref<InstanceType<typeof NetCheck> | null>(null);
-
-const handleLinkClick = (link: { url: string; requireOuterNet?: boolean }) => {
-  netCheckRef.value?.checkAndOpen(link);
 };
 </script>
 
