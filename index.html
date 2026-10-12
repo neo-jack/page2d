@@ -5,6 +5,22 @@
     <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=dual-orbit-5" />
     <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="/apple-icon.png?v=blue-l-transparent-3" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* 在模块和样式加载前铺好背景，避免刷新时先露出白色画布。 */
+      html { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%); min-height: 100%; }
+      html[data-theme="light"] { background: linear-gradient(180deg, #9EC6F3 0%, #BDDDE4 80%, #B8E6C8 100%); }
+      html[data-page="design-workflow"] { background: #f6f5f0; }
+      body { margin: 0; }
+    </style>
+    <script>
+      // 默认暗色，与主题 store 一致；禁用存储时仍可启动页面。
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem("darkMode") === "false" ? "light" : "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+      document.documentElement.dataset.page = location.hash === "#/design-workflow" ? "design-workflow" : "home";
+    </script>
     <title>LBQ©2D©2025</title>
   </head>
   <body>

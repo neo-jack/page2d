@@ -79,7 +79,6 @@ const handleLinkClick = (link: { url: string; requireOuterNet?: boolean }) => {
   padding: 2rem;
   text-align: center;
   color: var(--text-light);
-  animation: fade-in 0.6s ease forwards;
   min-height: auto;
   height: auto;
 }

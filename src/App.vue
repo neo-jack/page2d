@@ -8,14 +8,12 @@ import { useLocaleStore } from "./store/locale";
 import { useThemeStore } from "./store/theme";
 import { zh, en } from "./i18n";
 import { NAV_CATEGORIES, type NavCategory } from "./config/nav";
-import { new3DPageUrl } from "./config/menu";
 
 const localeStore = useLocaleStore();
 const themeStore = useThemeStore();
 
 // 国际化文案
 const t = computed(() => (localeStore.locale === "zh" ? zh : en));
-const isLoaded = ref(false);
 const activeCategory = ref<NavCategory>(NAV_CATEGORIES[0]!);
 
 const tabsRef = ref<HTMLElement | null>(null);
@@ -33,9 +31,7 @@ const updateSlider = async () => {
 };
 
 watch(activeCategory, updateSlider);
-watch(isLoaded, (val) => {
-  if (val) updateSlider();
-});
+watch(() => localeStore.locale, updateSlider);
 //渲染启动 卸载清除
 const ro = new ResizeObserver(() => updateSlider());
 watch(tabsRef, (el, _, onCleanup) => {
@@ -52,17 +48,11 @@ watch(
   { immediate: true },
 );
 
-onMounted(() => {
-  // 初始化语言设置
-  localeStore.init();
-  // 初始化主题设置
-  themeStore.init();
+watch(() => themeStore.darkMode, (dark) => {
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+}, { immediate: true });
 
-  // 页面加载完成后显示内容
-  setTimeout(() => {
-    isLoaded.value = true;
-  }, 300);
-});
+onMounted(updateSlider);
 </script>
 
 <template>
@@ -77,12 +67,8 @@ onMounted(() => {
     <BackgroundLayer />
 
     <!-- 主内容区 -->
-    <Transition name="fade">
-      <main v-if="isLoaded" class="main-content">
+      <main class="main-content">
         <div class="main-actions">
-          <a class="new-3d-link" :href="new3DPageUrl">
-            {{ t.mainActions.new3DPage }}
-          </a>
           <!-- 语言切换按钮 -->
           <button
             class="locale-toggle-btn"
@@ -132,7 +118,6 @@ onMounted(() => {
           </section>
         </div>
       </main>
-    </Transition>
   </div>
 </template>
 
@@ -165,8 +150,7 @@ onMounted(() => {
   gap: 0.5rem;
 }
 
-.locale-toggle-btn,
-.new-3d-link {
+.locale-toggle-btn {
   height: 42px;
   padding: 0 1rem;
   border: 1px solid var(--border-light);
@@ -183,11 +167,6 @@ onMounted(() => {
   &:hover {
     opacity: 0.8;
   }
-}
-
-.new-3d-link {
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 .theme-toggle-btn {
@@ -365,14 +344,4 @@ onMounted(() => {
   }
 }
 
-// 过渡动画
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>

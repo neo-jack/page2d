@@ -26,6 +26,7 @@
 - `src/config/nav.ts` 的 `AI` 分类首项收录 `109my-aiproject`；其开发入口为 `http://localhost:3412/`，生产入口为站点同源 `/Ai/`，两者不要混用。
 - 浏览器标题在 `index.html` 中维护，使用 `LBQ©2D©2025`；2025 是固定展示年份，不随当前日期自动变化。标签页图标采用透明底蓝青双色交叠圆环，在本项目 `public/` 中独立维护；Apple 主屏幕图标保留透明底蓝色 L。
 - 主题、语言等跨组件状态放在 `src/store/`；单组件临时状态留在组件内部。
+- 刷新首屏背景由 `index.html` 内联样式和主题读取脚本提供，`main.ts` 在挂载前恢复偏好；主题默认值、日夜渐变和设计介绍页背景需与组件保持一致，避免白屏或主题闪切。
 - 本地 `.env` 不跟踪、不进入 Docker；仓库与镜像只使用空白 `.env.example`，构建使用 Node.js 24 + pnpm 10 frozen-lockfile。
 - 修改部署链路时同时核对 `package.json` 脚本、`Dockerfile` 安装/构建命令和 `.dockerignore`。
 - `vite.config.ts` 使用 `VITE_BASE_PATH` 控制构建基础路径，默认 `/`；统一站点构建设置为 `/2D/`，配置图片使用 `import.meta.env.BASE_URL`，HTML 图标路径由 Vite 处理。
@@ -34,3 +35,5 @@
 - Windows 下重命名项目目录时，同时修正本地 pnpm 安装元数据、依赖 junction 和生成启动器中的绝对路径；它们属于安装产物，不作为源码维护。
 
 - GitHub 远程为 `neo-jack/page2d`，公开仓库、master 主分支；主分支以独立项目初始提交重建，旧历史保存在本机归档。上传默认仅 CI，部署需仓库变量 DEPLOY_ENABLED=true。
+
+- 公网2D入口为根路径 `/`，由入口Nginx内部转发本服务 `/2D/`；生产资源继续以 `/2D/` 构建和服务，避免与3D资源冲突。旧 `/2D/` 页面在入口跳转根路径；本容器 `/2D/` 健康探测保持。src/config/nav.ts中的3D卡片链接必须为HTTPS `/3D/`，站内hash页面经旧前缀跳转后保留fragment。

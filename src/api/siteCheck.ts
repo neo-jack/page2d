@@ -30,7 +30,7 @@ export const checkSite = async (url: string): Promise<boolean> => {
 
 // 获取需要检测的站点列表
 export const getSiteList = (): SiteCheckResult[] => {
-  return navItems.filter((item) => item.category !== "SKILL").map((item) => ({
+  return navItems.filter((item) => item.kind !== "skill").map((item) => ({
     id: item.id,
     name: item.name,
     url: getNavUrl(item),

@@ -6,7 +6,7 @@
 
 ## 在线体验
 
-[打开 2D 个人主页](https://www.lanbinquan.top/2D/)
+[打开 2D 个人主页](https://www.lanbinquan.top/)
 
 ## 快速开始
 

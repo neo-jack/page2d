@@ -12,18 +12,29 @@
     >
       <div class="card-header">
         <div class="left-section">
-          <span v-if="item.category === 'SKILL'" class="skill-badge">SKILL</span>
           <div
-            v-else
             class="status-dot"
             :class="{
-              online: siteStatus[item.id] === true,
-              offline: siteStatus[item.id] === false,
+              online: item.kind === 'skill' || siteStatus[item.id] === true,
+              offline: item.kind !== 'skill' && siteStatus[item.id] === false,
             }"
           ></div>
           <span class="project-name">{{ getName(item) }}</span>
+          <span v-if="item.kind === 'skill'" class="skill-badge">SKILL</span>
         </div>
         <div class="icon-group">
+          <a
+            v-for="subPage in item.subPages"
+            :key="subPage.path"
+            :href="getNavUrl(subPage)"
+            class="sub-page-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            @click.stop
+            @keydown.stop
+          >
+            {{ localeStore.locale === 'zh' ? subPage.name : subPage.nameEn }}
+          </a>
           <a
             v-for="navIcon in item.icons"
             :key="navIcon.url"
@@ -59,9 +70,6 @@
           hl
         }}</span>
       </div>
-      <span v-if="item.category === 'SKILL'" class="card-action">
-        {{ t.navActions.viewSkill }} <span aria-hidden="true">↗</span>
-      </span>
     </div>
   </div>
   <NetCheck ref="netCheckRef" />
@@ -72,14 +80,12 @@ import * as IconPark from "@icon-park/vue-next";
 import { navItems, getNavUrl, type NavItem, type NavIcon, type NavCategory } from "../../config/nav";
 import { useLocaleStore } from "../../store/locale";
 import { checkSite } from "../../api/siteCheck";
-import { zh, en } from "../../i18n";
 import { ref, computed, onMounted, type Component } from "vue";
 import NetCheck from "../NetCheck/NetCheck.vue";
 
 const props = defineProps<{ category: NavCategory }>();
 
 const localeStore = useLocaleStore();
-const t = computed(() => (localeStore.locale === "zh" ? zh : en));
 const siteStatus = ref<Record<string, boolean>>({});
 const netCheckRef = ref<InstanceType<typeof NetCheck> | null>(null);
 
@@ -123,7 +129,7 @@ const getIcon = (name: string): Component | undefined => {
 // SKILL 是文档入口，不作为在线服务检测。
 const initSiteStatus = async () => {
   await Promise.all(
-    navItems.filter((item) => item.category !== "SKILL").map(async (item) => {
+    navItems.filter((item) => item.kind !== "skill").map(async (item) => {
       siteStatus.value[item.id] = await checkSite(getNavUrl(item));
     }),
   );
@@ -183,6 +189,8 @@ onMounted(() => {
 
 .card-header {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 0.5rem;
@@ -206,14 +214,6 @@ onMounted(() => {
   letter-spacing: 0.04em;
 }
 
-.card-action {
-  display: inline-flex;
-  gap: 5px;
-  margin-top: 0.65rem;
-  font-size: 0.75rem;
-  color: var(--text-light);
-}
-
 .status-dot {
   width: 8px;
   height: 8px;
@@ -233,9 +233,12 @@ onMounted(() => {
 
 .icon-group {
   display: flex;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
   gap: 6px;
-  flex-shrink: 0;
+  max-width: 100%;
+  margin-left: auto;
 }
 
 .nav-icon-link {
@@ -299,6 +302,32 @@ onMounted(() => {
   color: var(--text-muted);
   margin-bottom: 0.5rem;
   line-height: 1.4;
+}
+
+.sub-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  background: var(--btn-main-actions-bg);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+
+  &:hover {
+    color: var(--text-light);
+    border-color: var(--item-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--item-color);
+    outline-offset: 2px;
+  }
 }
 
 .tags {

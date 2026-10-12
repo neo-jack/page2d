@@ -1,5 +1,3 @@
-export const new3DPageUrl = "http://www.lanbinquan.top/";
-
 export interface MenuItem {
   label: string;
   labelEn: string;

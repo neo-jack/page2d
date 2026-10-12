@@ -44,10 +44,6 @@ export default {
     toLight: "Switch to Light Mode",
     toDark: "Switch to Dark Mode",
   },
-  // 顶部操作入口
-  mainActions: {
-    new3DPage: "New 3D",
-  },
   // 语言切换
   locale: {
     switch: "中文",
@@ -56,15 +52,11 @@ export default {
   navTitle: {
     text: "Portfolio",
   },
-  navActions: {
-    viewSkill: "Read the case study",
-  },
   // 导航分类
   navCategory: {
     AI: "AI",
-    网站: "Website",
-    SKILL: "SKILL",
-    源码: "Source",
+    提效: "Productivity",
+    研究: "Research",
     其他: "Other",
   },
 };

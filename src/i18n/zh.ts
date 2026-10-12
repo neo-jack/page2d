@@ -44,10 +44,6 @@ export default {
     toLight: "切换到亮色模式",
     toDark: "切换到暗黑模式",
   },
-  // 顶部操作入口
-  mainActions: {
-    new3DPage: "新版3D",
-  },
   // 语言切换
   locale: {
     switch: "English",
@@ -56,15 +52,11 @@ export default {
   navTitle: {
     text: "作品集",
   },
-  navActions: {
-    viewSkill: "查看图文介绍",
-  },
   // 导航分类
   navCategory: {
     AI: "AI",
-    网站: "网站",
-    SKILL: "SKILL",
-    源码: "源码",
+    提效: "提效",
+    研究: "研究",
     其他: "其他",
   },
 };
